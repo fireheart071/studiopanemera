@@ -38,7 +38,8 @@ const App = () => {
       <div className='content'>
         <Navbar />
         <section id='home' className='home'>
-          <h1 className='title'>Studio PANEMERA</h1>
+          <h1 className='title f'>STUDIO</h1>
+          <h1 className='title s'>PANEMERA</h1>
         </section>
         <section id='about' className='about'>
           <div className='text'>
@@ -48,10 +49,10 @@ const App = () => {
           <Cards title="" card={team} classo='overlay' classs='team-member' classc='con' slider='slider' button='button' />
         </section>
         <section id='service' className='service'>
-          <Cards button='button-serv' title="OUR SERVICES" card={images} classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
+          <Cards button='button-serv' card={images} classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
         </section>
         <section id='showcase' className='showcase' >
-          <VideoCards videoCard={videos} title='OUR WORKS' />
+          <VideoCards videoCard={videos} />
         </section>
       </div>
       <footer id="contact" className='contact'>
@@ -59,9 +60,7 @@ const App = () => {
           <div className='con-icon'>
             <a href='https://www.instagram.com/studio.panemera?igsh=cHFwdmh4ZzZ1cnE3'><img className='a' src="insta.png" /></a>
             <a href="mailto:studiopanemara@gmail.com"><img className='b' src="gmail.png" /></a>
-          </div>
-          <div className='con-text'>
-            <h1>Contact Us</h1>
+            <a href="https://wa.me/233557609106"><img className='c' src="whatsapp.png" /></a>
           </div>
         </div>
       </footer>
