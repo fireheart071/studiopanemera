@@ -507,7 +507,10 @@ footer{
   .curve{
     min-width: 100%;
   }
-  footer, .about,.showcase,.service{
+  .about,.showcase,.service{
     width: 97.4vw;
+  }
+  footer{
+    max-width: 100vw;
   }
 }

@@ -29,13 +29,13 @@ const App = () => {
     { id: 5, src: null, title: "" },
   ]
   const videos = [
-    { id: 1, src: "fulfilled 10s.mp4" },
-    { id: 2, src: "coachben1bts.mp4" },
-    { id: 3, src: "2024-2025 5.mp4" },
-    { id: 4, src: "v1691.mp4" },
-    { id: 5, src: "v9161(1).mp4" },
-    { id: 6, src: "v9162.mp4" },
-    { id: 7, src: "v9163.mp4" }
+    { id: 1, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448696/0331_2_vwtifb.mp4" },
+    { id: 2, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448593/0331_1_ejlfmn.mp4" },
+    { id: 3, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448425/0331_qzmrig.mp4" },
+    { id: 4, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447098/v1691_2_b5vwja.mp4" },
+    { id: 5, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447588/v9161_zomwm4.mp4" },
+    { id: 6, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447698/v9162_2_dehafe.mp4" },
+    { id: 7, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447760/v9163_2_b8rqpn.mp4" }
   ]
   return (
     <main>
@@ -44,8 +44,8 @@ const App = () => {
         <div className='ovl'></div>
         <section id='home' className='home'>
           <div>
-            <video preload='auto' autoPlay muted loop className='mainvideo'>
-              <source src='/panmain.mp4' type='video/mp4' />
+            <video autoPlay muted loop className='mainvideo'>
+              <source src='https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:low,f_auto,dl_1/v1743445901/panmain_4_djc0us.mp4' type='video/mp4' />
             </video>
           </div>
           <div className='title'>
