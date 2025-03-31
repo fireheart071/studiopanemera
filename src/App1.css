@@ -100,6 +100,23 @@ li> a:hover{
   font-size: 30px;
   position: sticky;
   top: 0px;
+  /* backdrop-filter: blur(10px);  */
+  /* Blurs the background */
+  /* background: radial-gradient(circle,   */
+                                /* rgba(0, 0, 0, 1) 30%,  */
+                                 /* Solid black in the center */
+                                /* rgba(0, 0, 0, 0.8) 50%,  */
+                                /* Starts fading */
+                                /* rgba(0, 0, 0, 0) 90%    */
+                                /* Fully transparent at edges */
+  /* ); */
+  background: radial-gradient(ellipse at center,  
+  rgba(0, 0, 0, 1) 20%,  /* Solid black in the center */
+  rgba(0, 0, 0, 0.8) 40%, /* Starts fading */
+  rgba(0, 0, 0, 0) 80%   /* Fully transparent at edges */
+);
+width: 100%;
+  /* border-radius: 8px; */
 }
 .mainvideo{
   position: absolute;
