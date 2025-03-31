@@ -32,7 +32,7 @@ const VideoCards = ({ title, videoCard }) => {
         <>
             <div className='video-container'>
                 {videoCard.map((item, index) => (
-                    <video key={item.id} autoPlay muted loop className={`vid${index + 1}`}>
+                    <video key={item.id} preload='auto' autoPlay muted loop className={`vid${index + 1}`}>
                         <source src={item.src} type="video/mp4" />
                     </video>
                 ))}

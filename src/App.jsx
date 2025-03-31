@@ -44,7 +44,7 @@ const App = () => {
         <div className='ovl'></div>
         <section id='home' className='home'>
           <div>
-            <video autoPlay muted loop className='mainvideo'>
+            <video preload='auto' autoPlay muted loop className='mainvideo'>
               <source src='/panmain.mp4' type='video/mp4' />
             </video>
           </div>
