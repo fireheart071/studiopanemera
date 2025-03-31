@@ -23,36 +23,52 @@ const App = () => {
   ];
   const team = [
     { id: 1, src: null, title: "" },
-    { id: 2, src: "/pan_icon.png", title: "MR. JIM" },
-    { id: 3, src: "/pan_icon.png", title: "MR. FRED" },
-    { id: 4, src: "/pan_icon.png", title: "MR. EDMUND" },
+    { id: 2, src: "/pan_icon.png", title: "JIM" },
+    { id: 3, src: "/pan_icon.png", title: "FRED" },
+    { id: 4, src: "/pan_icon.png", title: "EDMUND" },
     { id: 5, src: null, title: "" },
   ]
   const videos = [
     { id: 1, src: "fulfilled 10s.mp4" },
-    { id: 2, src: "coachben1bts.mp4", },
-    { id: 3, src: "2024-2025 5.mp4", },
+    { id: 2, src: "coachben1bts.mp4" },
+    { id: 3, src: "2024-2025 5.mp4" },
+    { id: 4, src: "v1691.mp4" },
+    { id: 5, src: "v9161.mp4" },
+    { id: 6, src: "v9162.mp4" },
+    { id: 7, src: "v9163.mp4" }
   ]
   return (
     <main>
       <div className='content'>
         <Navbar />
+        <div className='ovl'></div>
         <section id='home' className='home'>
-          <h1 className='title f'>STUDIO</h1>
-          <h1 className='title s'>PANEMERA</h1>
+          <div>
+            <video autoPlay muted loop className='mainvideo'>
+              <source src='/panmain.mp4' type='video/mp4' />
+            </video>
+          </div>
+          <div className='title'>
+            <h1 className=' f'>STUDIO</h1>
+            <h1 className=' s'>PANEMERA</h1>
+          </div>
+
         </section>
         <section id='about' className='about'>
           <div className='text'>
             <h2>Beauty in Motion</h2>
             <p>Studio Panemara is a full-service branding company and content creator specializing in videography. We are dedicated to consistently providing high customer satisfaction by rendering excellent service, quality products, and furnishing an enjoyable atmosphere at an acceptable price/value relationship. We will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work.</p>
           </div>
-          <Cards title="" card={team} classo='overlay' classs='team-member' classc='con' slider='slider' button='button' />
+
         </section>
         <section id='service' className='service'>
           <Cards button='button-serv' card={images} classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
         </section>
         <section id='showcase' className='showcase' >
           <VideoCards videoCard={videos} />
+        </section>
+        <section id='crew' className='crew'>
+          <Cards title="" card={team} classo='overlay' classs='team-member' classc='con' slider='slider' button='button' />
         </section>
       </div>
       <footer id="contact" className='contact'>

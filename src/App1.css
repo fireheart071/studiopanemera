@@ -3,6 +3,14 @@ main{
   flex-direction: column;
   min-height: 100vh;
 }
+/* .ovl{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: -1;
+} */
 nav:first-child>ul {
   display: flex;
   justify-content: center;
@@ -15,7 +23,7 @@ nav:first-child>ul {
   width: 100vw;
   top: 10px;
   right: 35px;
-  z-index: 3;
+  z-index: 1;
 }
 nav:first-child{
   display: flex;
@@ -32,21 +40,23 @@ nav:first-child{
 li{
   list-style-type: none;
 }
-.title{
+/* .title{
   color: white;
   font-size: 30px;
   position: sticky;
-  top: 50px; /* Sticks when it reaches this position */
-}
+  top: 50px; Sticks when it reaches this position */
+/* } */
 
 .f{
-  font-family: Poppins, sans-serif;
   font-weight: 300;
   color: var(--red);
   letter-spacing: 0.3em;
+  font-size: 30px;
 }
 .s{
+  font-size: 30px;
   margin-left: 8px;
+  font-family: "Din Condensed Web";
 }
 .pan-icon{
   width: 90px;
@@ -64,7 +74,6 @@ nav:first-child>ul>li>a{
   padding: 6px;
   text-decoration: none;
   color: white;
-  font-family: "Poppins", sans-serif;
 }
 li> a:hover{
   background-color: var(--red);
@@ -80,15 +89,35 @@ li> a:hover{
   align-items: center;
   margin: 0;
 }
+
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: white;
+  font-size: 30px;
+  position: sticky;
+  top: 0px;
+}
+.mainvideo{
+  position: absolute;
+  min-width: 100%;
+  object-fit: cover;
+  height: 100vh;
+  left : 0px;
+  top: 0px;
+  z-index: 0;
+}
 .text{
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .text>p{
-  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
@@ -130,11 +159,15 @@ li> a:hover{
   width: 250px;
   height: 250px;
   aspect-ratio: 1;
+  position: relative;
+  z-index: 0;
 }
 .con-services, .services{
   width: 300px;
   height: 520px;
   aspect-ratio: 1;
+  position: relative;
+  z-index: 0;
 }
 .team-member:hover, .services:hover{
   transition: all 0.5s ease-in;
@@ -148,7 +181,7 @@ li> a:hover{
   width: 50px;
   height: 50px;
   transform: translateY(180%);
-  z-index: 2;
+  z-index: 0;
   opacity: 0.6;
 }
 .button-serv{
@@ -191,6 +224,8 @@ li> a:hover{
   height: 250px;
   background-color: gray;
   color : black;
+  position: relative;
+  z-index: 2;
 }
 .overlay-services{
   display: flex;
@@ -200,6 +235,8 @@ li> a:hover{
   height: 520px;
   background-color: gray;
   color: black;
+  position: relative;
+  z-index: 2;
 }
 .overlay:hover, .overlay-services:hover{ 
   opacity: 0.5;
@@ -249,20 +286,19 @@ li> a:hover{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: visible;
+  /* overflow: visible; */
 }
 .video-container{
   display: flex;
   justify-content: flex-start;
   align-items: center;
   min-height: 96vh;
-  overflow: hidden;
-  gap: 10px;
+  gap: 5px;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  z-index: 1;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   padding: 0 20px;
+  z-index: 0;
 }
 .video-container::-webkit-scrollbar {
   height: 5px;
@@ -272,14 +308,16 @@ li> a:hover{
   border-radius: 5px;
 }
 video{
-  width: 310px;
+  width: 170px;
   flex-shrink: 0;
-  min-width: 310px;
-  height: 90%;
+  /* min-width: 310px; */
 }
 /* .vid2{
   transform: translateY(65px);
 } */
+.vid4{
+  width: 535px;
+}
 .content {
   flex: 1 !important;
 }
@@ -288,12 +326,14 @@ footer{
   height: 90px;
   justify-content: center;
   align-items: start;
-  width: 99vw;
+  max-width: 99vw;
 }
 .curve {
   background: linear-gradient(to bottom, rgba(128, 128, 128, 0) 0%, grey 150%);
   height: 180px;
   width: 100%;
+  position: relative;
+  z-index: 5;
   /* position: absolute; */
   /* bottom: -30px; */
   /* left: 0;
@@ -322,7 +362,7 @@ footer{
   display: flex;
   width: inherit;
   height: 100%;
-  gap: 170px;
+  gap: 15%;
   justify-content: center;
   align-items: center;
   
@@ -340,14 +380,14 @@ footer{
 
 
 
-@media screen and (max-width: 850px){
+@media screen and (max-width: 875px){
   .menu{
     display: block;
-    position: fixed;
+    position: absolute;
     width: 30px;
-    right: 15px;
+    right: 0px;
     top: 10px;
-    z-index: 4;
+    z-index: 10;
   }
   
   .navbar{
@@ -362,7 +402,7 @@ footer{
     left: 95px;
     top: -5px;
     opacity: 0;
-    z-index: 4;
+    z-index: 9;
   }
   .chickletta:checked ~ nav>nav,
    .chickletta:checked ~ .ph-nav{
@@ -381,7 +421,7 @@ footer{
     width: 100vw;
     border-radius: 0px;
     height: 100vh;
-    z-index: 3;
+    z-index: 9;
     
     /* left: 20px;
     bottom: 70px; */
@@ -393,7 +433,7 @@ footer{
     align-items: center;
     justify-content: space-evenly;
     width: 70%;
-    height: 250px;
+    height: 300px;
     padding: 0;
     margin: 0;
     justify-self: center;
@@ -424,12 +464,7 @@ footer{
     display: none;
   }
   .text{
-    width: 300px;
-  }
-  .text>p{
-    width: 350px;
-    padding: 10px;
-    text-align: center;
+    width: 90%;
   }
   .home,.about{
     width: 97vw;
@@ -447,8 +482,10 @@ footer{
     height: 200px;
   }
   .text>p{
-    width: 300px;
     font-size: 20px;
+    width: fit-content;
+    padding: 10px;
+    text-align: center;
   }
   .right{
     right: 0px;
@@ -467,7 +504,10 @@ footer{
     /* flex-wrap: nowrap; */
     flex-direction: row;
   }
+  .curve{
+    min-width: 100%;
+  }
   footer, .about,.showcase,.service{
-    width: 97vw;
+    width: 97.4vw;
   }
 }
