@@ -3,6 +3,7 @@ import './App1.css';
 import Cards from './components/Cards';
 import Navbar from './components/Navbar';
 import VideoCards from './components/VideoCards';
+import CardsTeam from './components/Cardsteam';
 const App = () => {
   const images = [
     { id: 1, src: null, title: "" },
@@ -23,8 +24,8 @@ const App = () => {
   ];
   const team = [
     { id: 1, src: null, title: "" },
-    { id: 2, src: "/pan_icon.png", title: "JIM" },
-    { id: 3, src: "/pan_icon.png", title: "FRED" },
+    { id: 2, src: "/JIM.png", title: "JIM" },
+    { id: 3, src: "/FRED.png", title: "FRED" },
     { id: 4, src: "/pan_icon.png", title: "EDMUND" },
     { id: 5, src: null, title: "" },
   ]
@@ -68,7 +69,7 @@ const App = () => {
           <VideoCards videoCard={videos} />
         </section>
         <section id='crew' className='crew'>
-          <Cards title="" card={team} classo='overlay' classs='team-member' classc='con' slider='slider' button='button' />
+          <CardsTeam title="" card={team} classo='overlay' classc='con' slider='slider' button='button' />
         </section>
       </div>
       <footer id="contact" className='contact'>
