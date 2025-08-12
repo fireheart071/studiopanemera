@@ -1,33 +1,30 @@
-import React from 'react';
+import { useEffect } from 'react';
 import './App1.css';
 import Cards from './components/Cards';
+import CardsTeam from './components/Cardsteam';
 import Navbar from './components/Navbar';
 import VideoCards from './components/VideoCards';
-import CardsTeam from './components/Cardsteam';
+
 const App = () => {
   const images = [
-    { id: 1, src: null, title: "" },
-    { id: 2, src: "/pan_icon.png", title: "Automobile" },
-    { id: 3, src: "/pan_icon.png", title: "Beauty & Cosmetic" },
-    { id: 4, src: "/pan_icon.png", title: "Corperate" },
-    { id: 5, src: "/pan_icon.png", title: "Education" },
-    { id: 6, src: "/pan_icon.png", title: "Electronics & Machinery" },
-    { id: 7, src: "/pan_icon.png", title: "Entertainment" },
-    { id: 8, src: "/pan_icon.png", title: "Medical" },
-    { id: 9, src: "/pan_icon.png", title: "Music Production" },
-    { id: 10, src: "/pan_icon.png", title: "Music Videos" },
-    { id: 11, src: "/pan_icon.png", title: "Personal" },
-    { id: 12, src: "/pan_icon.png", title: "Real Estate" },
-    { id: 13, src: "/pan_icon.png", title: "Sports & Fitness" },
-    { id: 14, src: "/pan_icon.png", title: "Super Market" },
-    { id: 15, src: null, title: "" }
+    { id: 1, src: "/pan_icon.png", title: "Automobile" },
+    { id: 2, src: "/pan_icon.png", title: "Beauty & Cosmetic" },
+    { id: 3, src: "/pan_icon.png", title: "Corperate" },
+    { id: 4, src: "/pan_icon.png", title: "Education" },
+    { id: 5, src: "/pan_icon.png", title: "Electronics & Machinery" },
+    { id: 6, src: "/pan_icon.png", title: "Entertainment" },
+    { id: 7, src: "/pan_icon.png", title: "Medical" },
+    { id: 8, src: "/pan_icon.png", title: "Music Production" },
+    { id: 9, src: "/pan_icon.png", title: "Music Videos" },
+    { id: 10, src: "/pan_icon.png", title: "Personal" },
+    { id: 11, src: "/pan_icon.png", title: "Real Estate" },
+    { id: 12, src: "/pan_icon.png", title: "Sports & Fitness" },
+    { id: 13, src: "/pan_icon.png", title: "Super Market" },
   ];
   const team = [
-    { id: 1, src: null, title: "" },
-    { id: 2, src: "/JIM.png", title: "JIM" },
-    { id: 3, src: "/FRED.png", title: "FRED" },
-    { id: 4, src: "/pan_icon.png", title: "EDMUND" },
-    { id: 5, src: null, title: "" },
+    { id: 1, src: "/JIM.png", title: "JIM" },
+    { id: 2, src: "/FRED.png", title: "FRED" },
+    { id: 3, src: "", title: "EDMUND" },
   ]
   const videos = [
     { id: 1, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448696/0331_2_vwtifb.mp4" },
@@ -38,6 +35,19 @@ const App = () => {
     { id: 6, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447698/v9162_2_dehafe.mp4" },
     { id: 7, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743447760/v9163_2_b8rqpn.mp4" }
   ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const title = document.querySelector('.title');
+      if (title) {
+        title.style.transform = `translateY(${scrollY * 0.3}px)`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main>
       <div className='content'>
@@ -63,13 +73,13 @@ const App = () => {
 
         </section>
         <section id='service' className='service'>
-          <Cards button='button-serv' card={images} classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
+          <Cards button='button-serv' card={ images } classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
         </section>
         <section id='showcase' className='showcase' >
-          <VideoCards videoCard={videos} />
+          <VideoCards videoCard={ videos } />
         </section>
         <section id='crew' className='crew'>
-          <CardsTeam title="" card={team} classo='overlay' classc='con' slider='slider' button='button' />
+          <CardsTeam title="" card={ team } classo='overlay' classc='con' slider='slider' button='button' />
         </section>
       </div>
       <footer id="contact" className='contact'>

@@ -1,135 +1,97 @@
-// import React, { useRef, useState } from 'react';
-// const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
-//     const [hoveredIndex, setHoveredIndex] = useState(null);
-
-//     const containerRef = useRef(null);
-
-//     // Function to move left
-//     const scrollLeft = () => {
-//         if (containerRef.current) {
-//             const cardWidth = containerRef.current.firstChild.offsetWidth;
-//             containerRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
-//         }
-//     };
-
-//     // Function to move right
-//     const scrollRight = () => {
-//         if (containerRef.current) {
-//             const cardWidth = containerRef.current.firstChild.offsetWidth;
-//             containerRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
-//         }
-//     };
-
-
-//     return (
-//         <>
-//             <div className='slider-wrapper'>
-//                 <div className='nav-buttons'>
-//                     <button onClick={scrollLeft} className={`${button} left`}><img src="/arrow-back.png" alt="arrow-back" /></button>
-//                     <button onClick={scrollRight} className={`${button} right`}><img src="/arrow-forward.png" alt="arrow-forward" /></button>
-//                 </div>
-//                 <div ref={containerRef} className={slider}>
-//                     {card.map((item, index) => (
-//                         <div
-//                             key={item.id}
-//                             className={classc}
-//                             onMouseEnter={() => setHoveredIndex(index)}
-//                             onMouseLeave={() => setHoveredIndex(null)}
-//                         >
-//                             {hoveredIndex === index ? (
-//                                 <img src={item.src} alt="Hover to change" className={classs} />
-//                             ) : (
-//                                 <div className={classo}>
-//                                     <h1>{item.title}</h1>
-//                                 </div>
-//                             )}
-//                         </div>
-//                     ))}
-//                 </div>
-//             </div>
-//             <div>
-//                 <h1>{title}</h1>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default Cards;
-
-import React, { useRef, useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const containerRef = useRef(null);
 
+  // Duplicate cards for seamless infinite scroll
+  const cardsToShow = [...card, ...card, ...card, ...card, ...card, ...card, ...card];
+
+  const scrollAmountRef = useRef(0);
+
+  // Scroll right by one card
+  const scrollRight = useCallback(() => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      const firstRealCard = container.children[1];
+      const cardWidth = firstRealCard.offsetWidth;
+      container.scrollBy({ left: cardWidth, behavior: "smooth" });
+      scrollAmountRef.current += cardWidth;
+
+      // If we've scrolled past the original set, reset to start
+      if (scrollAmountRef.current >= cardWidth * card.length) {
+        setTimeout(() => {
+          container.scrollTo({ left: 0, behavior: "auto" });
+          scrollAmountRef.current = 0;
+        }, 500); // Wait for smooth scroll to finish
+      }
+    }
+  }, [card]);
+
+  // Scroll left by one card
   const scrollLeft = () => {
     if (containerRef.current) {
-        const container = containerRef.current;
-        const firstRealCard = container.children[1]; // or whichever is your real first card
-        const cardWidth = firstRealCard.offsetWidth;
-      containerRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
-    }
-  };
+      const container = containerRef.current;
+      const firstRealCard = container.children[1];
+      const cardWidth = firstRealCard.offsetWidth;
+      container.scrollBy({ left: -cardWidth, behavior: "smooth" });
+      scrollAmountRef.current -= cardWidth;
 
-  const scrollRight = () => {
-    if (containerRef.current) {
-        const container = containerRef.current;
-        const firstRealCard = container.children[1]; // or whichever is your real first card
-        const cardWidth = firstRealCard.offsetWidth;
-      containerRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
+      // If we've scrolled before the start, reset to end
+      if (scrollAmountRef.current < 0) {
+        setTimeout(() => {
+          container.scrollTo({ left: cardWidth * card.length, behavior: "auto" });
+          scrollAmountRef.current = cardWidth * card.length;
+        }, 500);
+      }
     }
   };
 
   useEffect(() => {
+    // Center the scroll at the start
     if (containerRef.current && card.length > 0) {
-      const container = containerRef.current;
-      const cardsArray = container.children;
-      const cardCount = cardsArray.length;
-      const middleIndex = Math.round(cardCount / 2);
-      const cardWidth = cardsArray[middleIndex].offsetWidth;
-      const containerWidth = container.offsetWidth;
-
-      // Scroll so that the middle card is centered
-      const scrollPosition = cardWidth * middleIndex - containerWidth / 2 + cardWidth / 2;
-      container.scrollTo({ left: scrollPosition, behavior: "smooth" });
+      containerRef.current.scrollTo({ left: 0, behavior: "auto" });
+      scrollAmountRef.current = 0;
     }
   }, [card]);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollRight();
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [scrollRight]);
 
   return (
     <>
       <div className='slider-wrapper'>
         <div className='nav-buttons'>
-          <button onClick={scrollLeft} className={`${button} left`}>
+          <button onClick={ scrollLeft } className={ `${button} left` }>
             <img src="/arrow-back.png" alt="arrow-back" />
           </button>
-          <button onClick={scrollRight} className={`${button} right`}>
+          <button onClick={ scrollRight } className={ `${button} right` }>
             <img src="/arrow-forward.png" alt="arrow-forward" />
           </button>
         </div>
 
-        <div ref={containerRef} className={slider}>
-          {card.map((item, index) => (
+        <div ref={ containerRef } className={ slider }>
+          { cardsToShow.map((item, index) => (
             <div
-              key={item.id}
-              className={classc}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              key={ index + '-' + (item.id ?? 'card') }
+              className={ classc }
+              onMouseEnter={ () => setHoveredIndex(index) }
+              onMouseLeave={ () => setHoveredIndex(null) }
             >
-              {hoveredIndex === index ? (
-                <img src={item.src} alt="Hover to change" className={classs} />
-              ) : (
-                <div className={classo}>
-                  <h1>{item.title}</h1>
-                </div>
-              )}
+              { hoveredIndex == index ? (<span className={ classo }>
+                { item.title }
+              </span>) : " " }
+              <img src={ item.src } alt="Hover to change" className={ classs } />
             </div>
-          ))}
+          )) }
         </div>
       </div>
-
-      {/* <div>
-        <h1>{title}</h1>
-      </div> */}
     </>
   );
 };
