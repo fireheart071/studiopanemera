@@ -234,6 +234,7 @@ li>a:hover {
   height: 520px;
   aspect-ratio: 1;
   position: relative;
+  object-fit: cover;
   z-index: 0;
 }
 
@@ -315,7 +316,7 @@ li>a:hover {
   backdrop-filter: blur(8px);
   color: black;
   position: absolute;
-  z-index: 0;
+  z-index: 20;
   opacity: 0;
   transform: translateY(520px) scale(0.95);
   animation: slideUpFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;

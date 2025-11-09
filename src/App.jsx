@@ -7,24 +7,24 @@ import VideoCards from './components/VideoCards';
 
 const App = () => {
   const images = [
-    { id: 1, src: "/pan_icon.png", title: "Automobile" },
-    { id: 2, src: "/pan_icon.png", title: "Beauty & Cosmetic" },
-    { id: 3, src: "/pan_icon.png", title: "Corperate" },
-    { id: 4, src: "/pan_icon.png", title: "Education" },
-    { id: 5, src: "/pan_icon.png", title: "Electronics & Machinery" },
-    { id: 6, src: "/pan_icon.png", title: "Entertainment" },
-    { id: 7, src: "/pan_icon.png", title: "Medical" },
-    { id: 8, src: "/pan_icon.png", title: "Music Production" },
-    { id: 9, src: "/pan_icon.png", title: "Music Videos" },
-    { id: 10, src: "/pan_icon.png", title: "Personal" },
-    { id: 11, src: "/pan_icon.png", title: "Real Estate" },
-    { id: 12, src: "/pan_icon.png", title: "Sports & Fitness" },
-    { id: 13, src: "/pan_icon.png", title: "Super Market" },
+    { id: 1, src: "/Automobile.jpg", title: "Automobile" },
+    { id: 2, src: "/Beauty_Cosmetic.png", title: "Beauty & Cosmetic" },
+    { id: 3, src: "/Corporate.jpg", title: "Corperate" },
+    { id: 4, src: "/Education.jpg", title: "Education" },
+    { id: 5, src: "/Electronics_Machinery.png", title: "Electronics & Machinery" },
+    { id: 6, src: "/Entertainment.png", title: "Entertainment" },
+    { id: 7, src: "/Medical.jpg", title: "Medical" },
+    { id: 8, src: "/Music_Production.jpg", title: "Music Production" },
+    { id: 9, src: "/Music_Videos.jpg", title: "Music Videos" },
+    { id: 10, src: "/Personal.png", title: "Personal" },
+    { id: 11, src: "/Real_Estate.png", title: "Real Estate" },
+    { id: 12, src: "/Sports_Fitness.png", title: "Sports & Fitness" },
+    { id: 13, src: "/Super_Market.png", title: "Super Market" },
   ];
   const team = [
     { id: 1, src: "/JIM.png", title: "JIM" },
     { id: 2, src: "/FRED.png", title: "FRED" },
-    { id: 3, src: "", title: "EDMUND" },
+    { id: 3, src: "/Roberta.jpg", title: "ROBERTA" }
   ]
   const videos = [
     { id: 1, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448696/0331_2_vwtifb.mp4" },
