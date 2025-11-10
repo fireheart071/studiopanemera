@@ -1,9 +1,10 @@
-import React from 'react'
 const Navbar = () => {
     return (
         <div className='navbar'>
             <nav>
-                <li><img className='pan-icon' src="/pan.png" alt="panemera icon" /></li>
+                <div className='logo'>
+                    <a href="#home" aria-label="Go to home"><img className='pan-icon' src="/pan.png" alt="Studio Panemera logo" loading="lazy" decoding="async" /></a>
+                </div>
                 <ul>
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#about">ABOUT</a></li>
@@ -13,8 +14,8 @@ const Navbar = () => {
                     <li><a href="#contact">CONTACT</a></li>
                 </ul>
 
-                <label htmlFor="chickletta">
-                    <img className='menu' src="/menu.png" alt="panemera icon" />
+                <label htmlFor="chickletta" aria-label="Toggle navigation menu">
+                    <img className='menu' src="/menu.png" alt="Open navigation menu" loading="lazy" decoding="async" />
                 </label>
                 <input type="checkbox" id='chickletta' className='chickletta' />
                 <nav className='ph-nav'>

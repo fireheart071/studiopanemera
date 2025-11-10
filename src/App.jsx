@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './App1.css';
-import Cards from './components/Cards';
-import CardsTeam from './components/Cardsteam';
 import Navbar from './components/Navbar';
-import VideoCards from './components/VideoCards';
+const Cards = React.lazy(() => import('./components/Cards'));
+const CardsTeam = React.lazy(() => import('./components/Cardsteam'));
+const VideoCards = React.lazy(() => import('./components/VideoCards'));
 
 const App = () => {
   const images = [
@@ -55,8 +55,10 @@ const App = () => {
         <div className='ovl'></div>
         <section id='home' className='home'>
           <div>
-            <video autoPlay muted loop className='mainvideo'>
-              <source src='https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:low,f_auto,dl_1/v1743445901/panmain_4_djc0us.mp4' type='video/mp4' />
+            {/* Use a poster and avoid preloading the full background video on initial load */ }
+            <video autoPlay muted loop className='mainvideo' playsInline preload="none" poster="/pan_icon.png">
+              {/* Request a smaller, optimized variant from Cloudinary to reduce initial transfer size */ }
+              <source src='https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,w_1280/v1743445901/panmain_4_djc0us.mp4' type='video/mp4' />
             </video>
           </div>
           <div className='title'>
@@ -73,21 +75,33 @@ const App = () => {
 
         </section>
         <section id='service' className='service'>
-          <Cards button='button-serv' card={ images } classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
+          <Suspense fallback={ <div style={ { minHeight: 200 } } /> }>
+            <Cards button='button-serv' card={ images } classo='overlay-services' classs='services' classc='con-services' slider='slider-serv' />
+          </Suspense>
         </section>
         <section id='showcase' className='showcase' >
-          <VideoCards videoCard={ videos } />
+          <Suspense fallback={ <div style={ { minHeight: 200 } } /> }>
+            <VideoCards videoCard={ videos } />
+          </Suspense>
         </section>
         <section id='crew' className='crew'>
-          <CardsTeam title="" card={ team } classo='overlay' classc='con' slider='slider' button='button' />
+          <Suspense fallback={ <div style={ { minHeight: 200 } } /> }>
+            <CardsTeam title="" card={ team } classo='overlay' classc='con' slider='slider' button='button' />
+          </Suspense>
         </section>
       </div>
       <footer id="contact" className='contact'>
         <div className='curve'>
           <div className='con-icon'>
-            <a href='https://www.instagram.com/studio.panemera?igsh=cHFwdmh4ZzZ1cnE3'><img className='a' src="insta.png" /></a>
-            <a href="mailto:studiopanemara@gmail.com"><img className='b' src="gmail.png" /></a>
-            <a href="https://wa.me/233557609106"><img className='c' src="whatsapp.png" /></a>
+            <a href='https://www.instagram.com/studio.panemera?igsh=cHFwdmh4ZzZ1cnE3' aria-label="Studio Panemera Instagram">
+              <img className='a' src="insta.png" alt="Instagram — Studio Panemera" loading="lazy" decoding="async" fetchpriority="low" />
+            </a>
+            <a href="mailto:studiopanemara@gmail.com" aria-label="Send email to Studio Panemera">
+              <img className='b' src="gmail.png" alt="Email Studio Panemera" loading="lazy" decoding="async" fetchpriority="low" />
+            </a>
+            <a href="https://wa.me/233557517229" aria-label="Message Studio Panemera on WhatsApp">
+              <img className='c' src="whatsapp.png" alt="WhatsApp Studio Panemera" loading="lazy" decoding="async" fetchpriority="low" />
+            </a>
           </div>
         </div>
       </footer>

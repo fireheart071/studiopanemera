@@ -131,11 +131,11 @@ const Cardsteam = ({ card, classc, slider, button }) => {
         <>
             <div className='slider-wrapper'>
                 <div className='nav-buttons'>
-                    <button onClick={ scrollLeft } className={ `${button} left` }>
-                        <img src="/arrow-back.png" alt="arrow-back" />
+                    <button onClick={ scrollLeft } className={ `${button} left` } aria-label="Scroll team left">
+                        <img src="/arrow-back.png" alt="Scroll team left" />
                     </button>
-                    <button onClick={ scrollRight } className={ `${button} right` }>
-                        <img src="/arrow-forward.png" alt="arrow-forward" />
+                    <button onClick={ scrollRight } className={ `${button} right` } aria-label="Scroll team right">
+                        <img src="/arrow-forward.png" alt="Scroll team right" />
                     </button>
                 </div>
                 <div ref={ containerRef } className={ slider } style={ { overflowX: 'auto', whiteSpace: 'nowrap' } }>
@@ -148,6 +148,9 @@ const Cardsteam = ({ card, classc, slider, button }) => {
                                 src={ item.src }
                                 alt={ item?.title ? `Photo of ${item.title}` : "Hover to change" }
                                 className={ `team-member team-member${(index % cardsToShow) + 1}` }
+                                loading="lazy"
+                                decoding="async"
+                                fetchpriority="low"
                             />
                         </div>
                     )) }

@@ -1,0 +1,7 @@
+# robots.txt for Studio Panemera
+# Allow all crawlers. Update the Sitemap URL to your real domain before publishing.
+User-agent: *
+Allow: /
+
+# Update this to the final domain sitemap location
+Sitemap: https://studiopanemera.netlify.app/sitemap.xml

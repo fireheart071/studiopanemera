@@ -68,11 +68,11 @@ const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
     <>
       <div className='slider-wrapper'>
         <div className='nav-buttons'>
-          <button onClick={ scrollLeft } className={ `${button} left` }>
-            <img src="/arrow-back.png" alt="arrow-back" />
+          <button onClick={ scrollLeft } className={ `${button} left` } aria-label="Scroll left">
+            <img src="/arrow-back.png" alt="Scroll left" />
           </button>
-          <button onClick={ scrollRight } className={ `${button} right` }>
-            <img src="/arrow-forward.png" alt="arrow-forward" />
+          <button onClick={ scrollRight } className={ `${button} right` } aria-label="Scroll right">
+            <img src="/arrow-forward.png" alt="Scroll right" />
           </button>
         </div>
 
@@ -87,7 +87,14 @@ const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
               { hoveredIndex == index ? (<span className={ classo }>
                 { item.title }
               </span>) : " " }
-              <img src={ item.src } alt="Hover to change" className={ classs } />
+              <img
+                src={ item.src }
+                alt={ item.title ?? 'Service image' }
+                className={ classs }
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
             </div>
           )) }
         </div>

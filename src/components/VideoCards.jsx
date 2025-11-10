@@ -2,8 +2,40 @@ import { useEffect, useRef, useState } from 'react';
 const VideoCards = ({ title, videoCard }) => {
     const containerRef = useRef(null);
     const [isPaused, setIsPaused] = useState(false);
+    const observerRef = useRef(null);
 
     useEffect(() => {
+        // Lazy-load video sources when they become visible to avoid heavy initial downloads
+        if ('IntersectionObserver' in window) {
+            observerRef.current = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const vid = entry.target;
+                        const srcEl = vid.querySelector('source[data-src]');
+                        if (srcEl && !srcEl.src) {
+                            srcEl.src = srcEl.dataset.src;
+                            // load and play if it's autoplay
+                            vid.load();
+                        }
+                    }
+                });
+            }, { root: null, rootMargin: '200px' });
+
+            // Observe all videos
+            const vids = containerRef.current?.querySelectorAll('video');
+            vids && vids.forEach(v => observerRef.current.observe(v));
+        } else {
+            // Fallback: set sources immediately
+            const vids = containerRef.current?.querySelectorAll('video');
+            vids && vids.forEach(v => {
+                const srcEl = v.querySelector('source[data-src]');
+                if (srcEl && !srcEl.src) {
+                    srcEl.src = srcEl.dataset.src;
+                    v.load();
+                }
+            });
+        }
+
         // Disable right-click
         const disableRightClick = (event) => {
             event.preventDefault();
@@ -83,8 +115,19 @@ const VideoCards = ({ title, videoCard }) => {
         <>
             <div className='video-container' ref={ containerRef } style={ { overflowX: 'auto', whiteSpace: 'nowrap' } }>
                 { clonedVideos.map((item, index) => (
-                    <video key={ `${item.id}-${index}` } preload='auto' autoPlay muted loop className={ `vid${(index % videosToShow) + 1}` }>
-                        <source src={ item.src } type="video/mp4" />
+                    <video
+                        key={ `${item.id}-${index}` }
+                        preload='none'
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className={ `vid${(index % videosToShow) + 1}` }
+                        aria-hidden={ true }
+                        tabIndex={ -1 }
+                    >
+                        <source data-src={ item.src } type="video/mp4" />
+                        {/* videos are muted — no captions provided */ }
                     </video>
                 )) }
             </div>

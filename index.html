@@ -1,13 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/pan_icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studio Panemera</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png"
+    href="/pan_icon.png" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+  <title>Studio Panemera</title>
+  <meta name="description"
+    content="Studio Panemera — full-service branding and videography. Beauty in motion: creative videos, content, and brand storytelling." />
+  <!-- Open Graph / Social -->
+  <meta property="og:title"
+    content="Studio Panemera — Videography & Branding" />
+  <meta property="og:description"
+    content="Full-service branding and videography — beauty in motion." />
+  <meta property="og:image"
+    content="https://studiopanemera.netlify.app/pan_icon.png" />
+  <meta property="og:url"
+    content="https://studiopanemera.netlify.app/" />
+  <meta property="og:type"
+    content="website" />
+  <!-- Twitter tags removed (no Twitter account). Open Graph tags remain for social previews (Instagram / Facebook / other platforms use OG). -->
+  <link rel="canonical"
+    href="https://studiopanemera.netlify.app/" />
+
+  <!-- Preconnect & preload fonts to reduce render-blocking LCP impact -->
+  <link rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin>
+  <link rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+  <link rel="preconnect"
+    href="https://db.onlinewebfonts.com"
+    crossorigin>
+
+  <!-- Preload the font stylesheet resources (these match imports in CSS) -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap">
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap">
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+  <link rel="preload" as="style"
+    href="https://db.onlinewebfonts.com/c/69dbc1186412d7831b88d8a78a360360?family=DIN+Condensed+Web">
+
+  <!-- Load fonts (display=swap already included) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://db.onlinewebfonts.com/c/69dbc1186412d7831b88d8a78a360360?family=DIN+Condensed+Web"
+    rel="stylesheet">
+
+  <!-- JSON-LD Organization (update URLs to your real domain/profile links) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Studio Panemera",
+      "url": "https://studiopanemera.netlify.app",
+      "logo": "https://studiopanemera.netlify.app/pan_icon.png",
+      "sameAs": [
+        "https://www.instagram.com/studio.panemera"
+      ]
+    }
+    </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module"
+    src="/src/main.jsx"></script>
+</body>
+
 </html>
