@@ -11,6 +11,7 @@ body {
   --red: #D0021B;
   text-align: center;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }

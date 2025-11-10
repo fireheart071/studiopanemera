@@ -4,6 +4,22 @@ main {
   min-height: 100vh;
 }
 
+/* Prevent unexpected horizontal overflow and use border-box sizing everywhere */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Avoid a page-level horizontal gap on small devices. Individual sliders keep their own horizontal scrolling. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 /* .ovl{
   position: fixed;
   top: 0;
@@ -96,7 +112,7 @@ li>a:hover {
 
 .home {
   min-height: 100vh;
-  width: 98.3vw;
+  width: 100%;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -162,7 +178,7 @@ li>a:hover {
 
 .about {
   min-height: 100vh;
-  width: 98.3vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,7 +192,7 @@ li>a:hover {
 
 .service {
   min-height: 100vh;
-  width: 98.8vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -196,6 +212,19 @@ li>a:hover {
   gap: 20px;
 }
 
+/* Enable scroll snapping for service cards without changing their size/height */
+.slider-serv {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slider-serv>.con-services {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  /* prevent shrinking/growing so card keeps its defined size */
+}
+
 .slider {
   display: flex;
   overflow: hidden;
@@ -204,19 +233,36 @@ li>a:hover {
   gap: 20px;
 }
 
+/* Enable scroll snapping so each card can snap to the center while scrolling */
+.slider {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Ensure each card is treated as a non-flexible item and snaps to center */
+.slider>.con {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+}
+
 .con,
 .team-member {
   width: 535px;
-  height: 300px;
-  border: solid 1px gray;
+  height: 330px;
   aspect-ratio: 1;
   object-fit: cover;
   position: relative;
   z-index: 0;
 }
 
+.team-name {
+  font-family: "DIN Condensed Web", sans-serif;
+  font-size: 24px;
+}
+
 /* Hide scrollbar for a specific element with class 'container' */
-.slider::-webkit-scrollbar {
+.slider::-webkit-scrollbar,
+body::-webkit-scrollbar {
   display: none;
   /* or width: 0; height: 0; */
 }
@@ -310,7 +356,7 @@ li>a:hover {
   justify-content: end;
   align-content: flex-end;
   align-items: flex-end;
-  width: 100%;
+  width: 101%;
   height: 50px;
   background: linear-gradient(90deg, rgba(128, 128, 128, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%);
   backdrop-filter: blur(8px);
@@ -322,6 +368,13 @@ li>a:hover {
   animation: slideUpFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   border-radius: 160% 0 0 0;
   box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* Make overlay-services visible on hover of the service card (keeps animation intact) */
+.con-services:hover .overlay-services {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 @keyframes slideUpFadeIn {
@@ -404,7 +457,7 @@ li>a:hover {
 
 .showcase {
   height: 100vh;
-  width: 98.3vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -456,7 +509,8 @@ footer {
   height: 90px;
   justify-content: center;
   align-items: start;
-  max-width: 99vw;
+  width: 100%;
+  max-width: 100%;
 }
 
 .curve {
@@ -528,7 +582,7 @@ footer {
 
   .navbar {
     width: 100%;
-    margin-left: -160px;
+    margin-left: 0;
   }
 
   .pan-icon {
@@ -589,7 +643,7 @@ footer {
     }
 
     to {
-      opacity: 0.8;
+      opacity: 1;
     }
   }
 
@@ -616,11 +670,11 @@ footer {
 
   .home,
   .about {
-    width: 97vw;
+    width: 100%;
   }
 
   .slider {
-    width: 97%;
+    width: 100%;
   }
 
   .team-member,
@@ -628,6 +682,13 @@ footer {
     width: 200px;
     height: 200px;
     aspect-ratio: 1;
+  }
+
+  /* Add scroll-padding so first/last items can snap to exact center on small screens */
+  .slider {
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-left: calc((100vw - 200px) / 2);
+    scroll-padding-right: calc((100vw - 200px) / 2);
   }
 
   .overlay {
@@ -664,16 +725,18 @@ footer {
   }
 
   .curve {
-    min-width: 100%;
+    /* min-width: 100%; */
+    width: 100vw;
   }
 
   .about,
   .showcase,
   .service {
-    width: 97.4vw;
+    width: 100%;
   }
 
   footer {
-    max-width: 100vw;
+    /* max-width: 100vw; */
+    width: 100vw;
   }
 }

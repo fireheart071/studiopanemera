@@ -22,9 +22,9 @@ const App = () => {
     { id: 13, src: "/Super_Market.png", title: "Super Market" },
   ];
   const team = [
-    { id: 1, src: "/JIM.png", title: "JIM" },
-    { id: 2, src: "/FRED.png", title: "FRED" },
-    { id: 3, src: "/Roberta.jpg", title: "ROBERTA" }
+    { id: 1, src: "/JIM.png", title: "JIM - Producer" },
+    { id: 2, src: "/FRED.png", title: "FRED - Creative Director" },
+    { id: 3, src: "/Roberta.jpg", title: "ROBERTA - Client Care" }
   ]
   const videos = [
     { id: 1, src: "https://res.cloudinary.com/dprm1pdxg/video/upload/q_auto:eco,f_auto,dl_1/v1743448696/0331_2_vwtifb.mp4" },

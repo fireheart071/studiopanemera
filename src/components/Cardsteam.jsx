@@ -142,9 +142,11 @@ const Cardsteam = ({ card, classc, slider, button }) => {
                     {/* Render cloned cards for infinite scroll */ }
                     { clonedCards.map((item, index) => (
                         <div key={ `${item.id}-${index}` } className={ classc }>
+                            {/* Name on top of each team card */ }
+                            <p className="team-name">{ item?.title ?? '' }</p>
                             <img
                                 src={ item.src }
-                                alt="Hover to change"
+                                alt={ item?.title ? `Photo of ${item.title}` : "Hover to change" }
                                 className={ `team-member team-member${(index % cardsToShow) + 1}` }
                             />
                         </div>
