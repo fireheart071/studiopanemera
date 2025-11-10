@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
 
   // Duplicate cards for seamless infinite scroll
@@ -53,6 +54,23 @@ const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
       containerRef.current.scrollTo({ left: 0, behavior: "auto" });
       scrollAmountRef.current = 0;
     }
+    // detect mobile/small screens so we can show titles without hover
+    const mq = window.matchMedia?.('(max-width: 875px)');
+    const set = () => setIsMobile(!!mq?.matches);
+    set();
+    try {
+      mq?.addEventListener?.('change', set);
+    } catch {
+      // Safari fallback
+      mq?.addListener?.(set);
+    }
+    return () => {
+      try {
+        mq?.removeEventListener?.('change', set);
+      } catch {
+        mq?.removeListener?.(set);
+      }
+    };
   }, [card]);
 
   // Auto-scroll effect
@@ -84,9 +102,11 @@ const Cards = ({ title, card, classo, classs, classc, slider, button }) => {
               onMouseEnter={ () => setHoveredIndex(index) }
               onMouseLeave={ () => setHoveredIndex(null) }
             >
-              { hoveredIndex == index ? (<span className={ classo }>
-                { item.title }
-              </span>) : " " }
+              { (hoveredIndex == index || isMobile) ? (
+                <span className={ classo }>
+                  { item.title }
+                </span>
+              ) : " " }
               <img
                 src={ item.src }
                 alt={ item.title ?? 'Service image' }
